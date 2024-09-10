@@ -143,6 +143,45 @@ export const Authors = defineDocumentType(() => ({
   computedFields,
 }))
 
+export const Post = defineDocumentType(() => ({
+  name: 'Post',
+  filePathPattern: 'blog/**/*.mdx',
+  contentType: 'mdx',
+  fields: {
+    title: { type: 'string', required: true },
+    date: { type: 'string', required: true },
+    tags: { type: 'list', of: { type: 'string' }, default: [] },
+    lastmod: { type: 'date' },
+    draft: { type: 'boolean' },
+    summary: { type: 'string' },
+    image: { type: 'string', required: true },
+    images: { type: 'list', of: { type: 'string' } },
+    authors: { type: 'list', of: { type: 'string' } },
+    layout: { type: 'string' },
+    bibliography: { type: 'string' },
+    canonicalUrl: { type: 'string' },
+    categories: { type: 'list', of: { type: 'string' } },
+    slug: { type: 'string' },
+  },
+  computedFields: {
+    ...computedFields,
+    structuredData: {
+      type: 'json',
+      resolve: (doc) => ({
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        headline: doc.title,
+        datePublished: doc.date,
+        dateModified: doc.lastmod || doc.date,
+        description: doc.summary,
+        image: doc.images ? doc.images[0] : siteMetadata.socialBanner,
+        url: `${siteMetadata.siteUrl}/${doc._raw.flattenedPath}`,
+        author: doc.authors,
+      }),
+    },
+  },
+}))
+
 export default makeSource({
   contentDirPath: 'data',
   documentTypes: [Blog, Authors],

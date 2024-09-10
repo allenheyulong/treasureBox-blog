@@ -1,16 +1,17 @@
 import siteMetadata from '@/data/siteMetadata'
 import headerNavLinks from '@/data/headerNavLinks'
 // import Logo from '@/data/logo.svg'
+import Image from 'next/image'
 import Link from './Link'
 import MobileNav from './MobileNav'
 import ThemeSwitch from './ThemeSwitch'
 import SearchButton from './SearchButton'
 
 const Header = () => {
-  let headerClass = 'flex items-center w-full bg-white dark:bg-gray-950 justify-between mt-4 py-4 px-4'
+  let headerClass =
+    'flex items-center w-full bg-white dark:bg-gray-950 justify-between mt-4 py-4 px-4'
   if (siteMetadata.stickyNav) {
-    headerClass +=
-      ' sticky top-0 z-50 border rounded-3xl '
+    headerClass += ' sticky top-0 z-50 border rounded-3xl '
   }
 
   return (
@@ -19,7 +20,11 @@ const Header = () => {
         <div className="flex items-center justify-between">
           <div className="mr-3">
             {/* <Logo /> */}
-            <img className="inline rounded-full w-10 h-10" src="/static/favicons/logo.png" alt="Treasure Box" />
+            <Image
+              className="inline h-10 w-10 rounded-full"
+              src="/static/favicons/logo.png"
+              alt="Treasure Box"
+            />
           </div>
           {typeof siteMetadata.headerTitle === 'string' ? (
             <div className="hidden h-6 text-2xl font-semibold sm:block">

@@ -85,7 +85,7 @@ export default function Home({ posts }) {
         <div className="mt-4 flex justify-end text-base font-medium leading-6">
           <Link
             href="/blog"
-            className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 mb-4"
+            className="mb-4 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
             aria-label="All posts"
           >
             全部文章 &rarr;

@@ -6,12 +6,11 @@ import siteMetadata from '@/data/siteMetadata'
 
 const PostCard = ({ post }: { post: CoreContent<Post> }) => {
   const { slug, date, title, summary, tags, images } = post
-  debugger
   return (
     <Link href={`/blog/${slug}`}>
       <article className="dark:bg-dark-100 mx-auto overflow-hidden rounded-xl duration-300 hover:scale-105 hover:shadow-md">
         <Image
-          src={images?.[0]??'/static/images/ocean.jpeg'}
+          src={images?.[0] ?? '/static/images/ocean.jpeg'}
           className="aspect-video w-full object-cover"
           width={1600}
           height={900}

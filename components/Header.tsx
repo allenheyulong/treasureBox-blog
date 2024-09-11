@@ -21,8 +21,10 @@ const Header = () => {
           <div className="mr-3">
             {/* <Logo /> */}
             <Image
-              className="inline h-10 w-10 rounded-full"
+              className="inline rounded-full"
               src="/static/favicons/logo.png"
+              width={40}
+              height={40}
               alt="Treasure Box"
             />
           </div>
